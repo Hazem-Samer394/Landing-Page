@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@keyframes slideScale {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-20px) scale(1.05);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
