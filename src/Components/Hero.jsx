@@ -13,7 +13,7 @@ function Hero() {
         className="bg-[#f7f7f7] p-8 sm:p-10 rounded-2xl shadow-md flex flex-col justify-between w-full md:w-[580px]"
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
       >
         <div className="space-y-6">
           <h1 className="text-5xl font-extrabold text-[#3b3b3b] leading-tight">
