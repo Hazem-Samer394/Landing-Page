@@ -5,121 +5,244 @@ function Tips() {
   const tips = [
     {
       id: 1,
-      title: "Perfect Dough Tips",
-      description:
-        "Learn how to knead and prepare the perfect pizza dough for a crispy and soft base.",
-      image:
-        "https://paltimeps.ps/uploads//images/2dd38b123cc8007185954de8ad885655.jpg",
+      title: "Perfect Dough Secrets",
+      description: "Discover the art of creating the perfect pizza dough - crispy edges, soft center, and that authentic Italian texture that makes every bite unforgettable.",
+      image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
       readTime: "5 min read",
-      category: "Pizza Basics",
+      category: "Dough Mastery",
+      difficulty: "Beginner",
+      tipsCount: 7
     },
     {
       id: 2,
-      title: "Choosing Toppings",
-      description:
-        "Discover the best ingredient combinations to create mouthwatering pizzas.",
-      image:
-        "https://modo3.com/thumbs/fit630x300/164265/1490711030/%D8%B7%D8%B1%D9%8A%D9%82%D8%A9_%D8%AA%D8%AD%D8%B6%D9%8A%D8%B1_%D8%A8%D9%8A%D8%AA%D8%B2%D8%A7_%D8%A8%D8%A8%D8%B1%D9%88%D9%86%D9%8A.jpg",
+      title: "Topping Combinations",
+      description: "Explore creative topping combinations that will transform your pizza from ordinary to extraordinary. Balance flavors like a professional chef.",
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
       readTime: "7 min read",
-      category: "Toppings Guide",
+      category: "Flavor Guide",
+      difficulty: "Easy",
+      tipsCount: 12
     },
     {
       id: 3,
-      title: "Baking Techniques",
-      description:
-        "Maximize the flavor and texture of your pizza with these essential baking tips.",
-      image:
-        "https://img.ananinja.com/media/ninja-catalog-42/restaurants/wbbr83vdqevv6ajgpuq463nwmf8y/%D8%A8%D9%8A%D8%AA%D8%B2%D8%A7%20%D9%85%D8%B4%D9%83%D9%84%20%D9%84%D8%AD%D9%88%D9%85%20(shobbak).jpg?w=1080&q=75",
+      title: "Baking Perfection",
+      description: "Master the oven techniques that give your pizza that perfect char, bubbly cheese, and crispy crust that everyone loves.",
+      image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
       readTime: "6 min read",
-      category: "Cooking Tips",
+      category: "Cooking Techniques",
+      difficulty: "Intermediate",
+      tipsCount: 9
     },
+    {
+      id: 4,
+      title: "Sauce Secrets",
+      description: "Learn how to make the perfect pizza sauce from fresh tomatoes and herbs. The foundation of every great pizza starts here.",
+      image: "https://images.unsplash.com/photo-1562059394-e7b6f21d8e21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      readTime: "4 min read",
+      category: "Sauces",
+      difficulty: "Beginner",
+      tipsCount: 5
+    },
+    {
+      id: 5,
+      title: "Cheese Selection",
+      description: "From mozzarella to gorgonzola, understand which cheeses work best for different pizza styles and how to achieve the perfect melt.",
+      image: "https://images.unsplash.com/photo-1546039907-3155e31eb6e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      readTime: "8 min read",
+      category: "Ingredients",
+      difficulty: "Easy",
+      tipsCount: 10
+    },
+    {
+      id: 6,
+      title: "Wine Pairing Guide",
+      description: "Discover the perfect wine companions for your pizza creations. Elevate your dining experience with these expert pairing suggestions.",
+      image: "https://images.unsplash.com/photo-1474722883778-792e7990302a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      readTime: "5 min read",
+      category: "Pairing",
+      difficulty: "Intermediate",
+      tipsCount: 6
+    }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.9
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const hoverVariants = {
+    hover: {
+      y: -8,
+      scale: 1.02,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const getDifficultyColor = (difficulty) => {
+    switch (difficulty) {
+      case "Beginner": return "bg-green-100 text-green-800";
+      case "Easy": return "bg-blue-100 text-blue-800";
+      case "Intermediate": return "bg-orange-100 text-orange-800";
+      case "Advanced": return "bg-red-100 text-red-800";
+      default: return "bg-gray-100 text-gray-800";
+    }
+  };
+
   return (
-    <div className="py-16 bg-gray-50" id="tips">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Pizza Tips & Tricks
+    <div className="py-16 bg-gradient-to-br from-orange-50 to-amber-50" id="tips">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            Pizza Mastery Tips
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Expert advice and inspiration to create the perfect pizza at home
+            Become a pizza expert with our collection of professional tips, techniques, and secrets
           </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tips.map((tip, index) => {
-            const middleIndex = Math.floor(tips.length / 2);
-            const delay = Math.abs(index - middleIndex) * 0.3;
-
-            return (
-              <motion.article
-                key={tip.id}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay }}
-                viewport={{ once: true, amount: 0.3 }}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer hover:scale-105"
-              >
-                <img
-                  src={tip.image}
-                  alt={tip.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-orange-500 bg-orange-100 px-2 py-1 rounded-full">
-                      {tip.category}
-                    </span>
-                    <span className="text-xs text-gray-500">
-                      {tip.readTime}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors duration-200">
-                    {tip.title}
-                  </h3>
-
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {tip.description}
-                  </p>
-
-                  <motion.button
-                    whileHover={{ x: 8 }}
-                    className="text-orange-500 font-medium hover:text-orange-600 transition-colors duration-200 flex items-center gap-2"
-                  >
-                    Read More
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </motion.button>
-                </div>
-              </motion.article>
-            );
-          })}
-        </div>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {tips.map((tip) => (
+            <motion.article
+              key={tip.id}
+              variants={itemVariants}
+              whileHover="hover"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer border border-gray-100"
+            >
+              {/* الصورة مع Overlay */}
+              <div className="relative overflow-hidden">
+                <motion.img
+                  src={tip.image}
+                  alt={tip.title}
+                  className="w-full h-48 object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                  onError={(e) => {
+                    e.target.src = `https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80`;
+                  }}
+                />
+                
+                {/* Overlay معلومات سريعة */}
+                <div className="absolute top-4 left-4 flex flex-col gap-2">
+                  <span className="bg-[#e89f72] text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                    {tip.category}
+                  </span>
+                  <span className={`${getDifficultyColor(tip.difficulty)} px-2 py-1 rounded-full text-xs font-medium shadow-sm`}>
+                    {tip.difficulty}
+                  </span>
+                </div>
+
+                {/* عدد النصائح */}
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-900 px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
+                  {tip.tipsCount} tips
+                </div>
+              </div>
+
+              {/* المحتوى */}
+              <div className="p-6">
+                {/* وقت القراءة */}
+                <div className="flex items-center gap-2 mb-3">
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span className="text-sm text-gray-500 font-medium">
+                    {tip.readTime}
+                  </span>
+                </div>
+
+                {/* العنوان */}
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#e89f72] transition-colors duration-200 line-clamp-2">
+                  {tip.title}
+                </h3>
+
+                {/* الوصف */}
+                <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
+                  {tip.description}
+                </p>
+
+                {/* زر القراءة */}
+                <motion.button
+                  whileHover={{ x: 5 }}
+                  className="text-[#e89f72] font-semibold hover:text-[#d18c65] transition-colors duration-200 flex items-center gap-2 group/btn"
+                >
+                  Read Guide
+                  <motion.svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </motion.svg>
+                </motion.button>
+              </div>
+
+              {/* تأثير عند Hover */}
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#e89f72] rounded-2xl transition-all duration-300 pointer-events-none" />
+            </motion.article>
+          ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           className="text-center mt-12"
         >
-          <button className="bg-gray-900 cursor-pointer hover:bg-gray-800 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200">
-            View All Pizza Tips
-          </button>
+          <motion.button
+            className="bg-[#e89f72] hover:bg-[#d18c65] text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer text-lg flex items-center gap-2 mx-auto"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Explore All Pizza Guides
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/>
+            </svg>
+          </motion.button>
         </motion.div>
       </div>
     </div>

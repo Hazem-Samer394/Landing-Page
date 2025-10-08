@@ -23,16 +23,7 @@ function Navbar() {
         </motion.div>
 
         <motion.div
-          className="hidden md:flex flex-1 justify-center"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <NavLinks />
-        </motion.div>
-
-        <motion.div
-          className="hidden md:flex flex-1 max-w-md justify-end"
+          className="hidden md:flex flex-1 max-w-md justify-center ml-16" // زيادة ml-16 هنا
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -40,30 +31,42 @@ function Navbar() {
           <SearchInput placeholder="Search pizzas..." />
         </motion.div>
 
+        <motion.div
+          className="hidden md:flex flex-1 justify-end"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <NavLinks />
+        </motion.div>
+
         <button
-          className="md:hidden flex items-center justify-center text-gray-800 hover:text-black transition"
+          className="md:hidden flex items-center justify-center text-gray-800 hover:text-black transition ml-auto"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
-      </div>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 50, x: 50 }}
-            animate={{ opacity: 1, y: 0, x: 0 }}
-            exit={{ opacity: 0, y: 50, x: 50 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
-          >
-            <div className="flex flex-col items-center py-4 space-y-3">
-              <NavLinks />
-              <SearchInput placeholder="Search pizzas..." />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -20 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="md:hidden absolute top-full right-4 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-200 z-40"
+            >
+              <div className="flex flex-col py-4 space-y-1 px-2">
+                <NavLinks />
+                
+                <div className="w-full mt-3 px-3">
+                  <SearchInput placeholder="Search pizzas..." />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </nav>
   );
 }
