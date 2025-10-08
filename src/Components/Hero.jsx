@@ -16,7 +16,7 @@ function Hero() {
         transition={{ duration: 0.9, ease: "easeOut" }}
       >
         <div className="space-y-6">
-          <h1 className="text-5xl font-extrabold text-[#3b3b3b] leading-tight">
+          <h1 className="text-4xl font-extrabold text-[#3b3b3b] leading-tight">
             High-Quality Furniture Just For You
           </h1>
           <p className="text-lg text-gray-700 leading-relaxed font-medium">
