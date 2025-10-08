@@ -18,7 +18,7 @@ function Navbar() {
           transition={{ duration: 0.5 }}
         >
           <Link to="/" className="flex-shrink-0">
-            <Logo text="Logic4IT" />
+            <Logo text="Logic4Go " />
           </Link>
         </motion.div>
 

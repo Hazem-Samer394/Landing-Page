@@ -6,7 +6,7 @@ function Footer() {
 
   const sections = [
     {
-      title: "Logic4IT",
+      title: "Logic4Go ",
       content: (
         <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
           We make the best pizzas with love and fresh ingredients. Bringing joy
