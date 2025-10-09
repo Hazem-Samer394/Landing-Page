@@ -13,7 +13,6 @@ function ProductCard({ product, index }) {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -5 }}
-      id="product"
     
     >
       <div className="relative overflow-hidden">

@@ -86,7 +86,7 @@ function Footer() {
           viewport={{ once: true }}
           className="border-t border-gray-800 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center text-gray-400 text-sm text-center sm:text-left"
         >
-          <p>© {year} Logic4IT. All rights reserved.</p>
+          <p>© {year} Logic4Go. All rights reserved.</p>
 
           <div className="flex space-x-6 mt-4 sm:mt-0">
             {["Terms", "Privacy", "Cookies"].map((item, i) => (

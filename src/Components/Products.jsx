@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import ProductCard from "./ProductCard";
 
@@ -74,9 +74,20 @@ function Products() {
       deliveryTime: "22-28 min"
     },
   ];
-
+  useEffect(() => {
+    if (window.location.hash === '#products') {
+      const element = document.getElementById('products');
+      if (element) {
+        const offsetTop = element.offsetTop - 80; // تعدل حسب ارتفاع الـ navbar
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, []);
   return (
-    <div className="py-16 bg-gray-50" id="products">
+    <div className="py-16 bg-gray-50" id="product">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-12"
