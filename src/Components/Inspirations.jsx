@@ -66,6 +66,7 @@ function Inspirations() {
   ];
 
   const [showAll, setShowAll] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState(null);
   const visibleInspirations = showAll ? inspirations : inspirations.slice(0, 3);
 
   const containerVariants = {
@@ -106,6 +107,14 @@ function Inspirations() {
     }
   };
 
+  const handleCardHover = (id) => {
+    setHoveredCard(id);
+  };
+
+  const handleCardLeave = () => {
+    setHoveredCard(null);
+  };
+
   return (
     <div className="py-16 bg-gradient-to-b from-gray-50 to-white" id="inspirations">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -139,23 +148,36 @@ function Inspirations() {
                 whileHover="hover"
                 className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden border border-gray-100 cursor-pointer"
                 layout
+                onMouseEnter={() => handleCardHover(inspiration.id)}
+                onMouseLeave={handleCardLeave}
               >
                 {/* الصورة */}
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden h-64 sm:h-72">
                   <motion.img
                     src={inspiration.image}
                     alt={inspiration.title}
-                    className="w-full h-64 sm:h-72 object-cover"
+                    className="w-full h-full object-cover"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.5 }}
                   />
                   
-                  {/* Overlay مع المعلومات */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  {/* Overlay مع المعلومات - تظهر فقط عند التمرير */}
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+                    initial={{ opacity: 0 }}
+                    animate={{ 
+                      opacity: hoveredCard === inspiration.id ? 1 : 0 
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <div className="absolute bottom-6 left-6 right-6 text-white">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        whileHover={{ opacity: 1, y: 0 }}
+                        animate={{ 
+                          opacity: hoveredCard === inspiration.id ? 1 : 0,
+                          y: hoveredCard === inspiration.id ? 0 : 20
+                        }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
                         className="space-y-3"
                       >
                         <div className="flex items-center gap-2">
@@ -190,10 +212,17 @@ function Inspirations() {
                         </div>
                       </motion.div>
                     </div>
-                  </div>
+                  </motion.div>
                   
-                  {/* المعلومات الأساسية (تظهر دائمًا) */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+                  {/* المعلومات الأساسية (تختفي عند التمرير) */}
+                  <motion.div 
+                    className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6"
+                    animate={{ 
+                      opacity: hoveredCard === inspiration.id ? 0 : 1,
+                      y: hoveredCard === inspiration.id ? 10 : 0
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <div className="text-white">
                       <div className="flex items-center justify-between mb-2">
                         <span className="bg-[#e89f72] text-white px-2 py-1 rounded-md text-xs font-semibold">
@@ -205,14 +234,20 @@ function Inspirations() {
                         {inspiration.title}
                       </h3>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* زر الطلب السريع */}
                 <motion.button
-                  className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-900 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg"
+                  className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-900 p-2 rounded-full shadow-lg"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ 
+                    opacity: hoveredCard === inspiration.id ? 1 : 0,
+                    scale: hoveredCard === inspiration.id ? 1 : 0.8
+                  }}
                   whileHover={{ scale: 1.1, backgroundColor: "#e89f72", color: "white" }}
                   whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
