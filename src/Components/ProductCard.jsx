@@ -1,376 +1,172 @@
-import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { FaArrowRight, FaClock, FaStar, FaHeart, FaShoppingCart, FaEye } from "react-icons/fa";
+import { motion } from "framer-motion";
 
-function PizzaProducts() {
-  const [likedItems, setLikedItems] = useState({});
-
-  const toggleLike = (id) => {
-    setLikedItems(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
-
-  const pizzas = [
-    {
-      id: 1,
-      name: "Margherita Classic",
-      description: "Fresh tomato sauce, mozzarella cheese, and basil leaves on our signature crust",
-      price: "$12.99",
-      originalPrice: "$15.99",
-      image: "/api/placeholder/400/300",
-      discount: 19,
-      isNew: true,
-      rating: 4.8,
-      deliveryTime: "25-35 min",
-      category: "Vegetarian",
-      spiceLevel: 0,
-      size: "Medium",
-      ingredients: ["Tomato", "Mozzarella", "Basil", "Olive Oil"]
-    },
-    {
-      id: 2,
-      name: "Pepperoni Supreme",
-      description: "Double pepperoni, extra cheese, and our special pizza sauce",
-      price: "$16.99",
-      originalPrice: "$19.99",
-      image: "/api/placeholder/400/300",
-      discount: 15,
-      isNew: false,
-      rating: 4.9,
-      deliveryTime: "30-40 min",
-      category: "Meat Lovers",
-      spiceLevel: 2,
-      size: "Large",
-      ingredients: ["Pepperoni", "Mozzarella", "Pizza Sauce", "Herbs"]
-    },
-    {
-      id: 3,
-      name: "BBQ Chicken Deluxe",
-      description: "Grilled chicken, BBQ sauce, red onions, and cilantro on crispy crust",
-      price: "$18.99",
-      originalPrice: null,
-      image: "/api/placeholder/400/300",
-      discount: 0,
-      isNew: true,
-      rating: 4.7,
-      deliveryTime: "35-45 min",
-      category: "Specialty",
-      spiceLevel: 1,
-      size: "Large",
-      ingredients: ["Chicken", "BBQ Sauce", "Onions", "Cilantro"]
-    },
-    {
-      id: 4,
-      name: "Veggie Paradise",
-      description: "Bell peppers, mushrooms, olives, onions, and tomatoes with extra cheese",
-      price: "$14.99",
-      originalPrice: "$17.99",
-      image: "/api/placeholder/400/300",
-      discount: 17,
-      isNew: false,
-      rating: 4.6,
-      deliveryTime: "25-35 min",
-      category: "Vegetarian",
-      spiceLevel: 0,
-      size: "Medium",
-      ingredients: ["Bell Peppers", "Mushrooms", "Olives", "Onions", "Tomatoes"]
-    },
-    {
-      id: 5,
-      name: "Spicy Meat Feast",
-      description: "Pepperoni, sausage, jalapeños, and spicy tomato sauce for heat lovers",
-      price: "$20.99",
-      originalPrice: null,
-      image: "/api/placeholder/400/300",
-      discount: 0,
-      isNew: true,
-      rating: 4.8,
-      deliveryTime: "30-40 min",
-      category: "Spicy",
-      spiceLevel: 3,
-      size: "Large",
-      ingredients: ["Pepperoni", "Sausage", "Jalapeños", "Spicy Sauce"]
-    },
-    {
-      id: 6,
-      name: "Four Cheese Bliss",
-      description: "Mozzarella, parmesan, gorgonzola, and ricotta cheese blend",
-      price: "$15.99",
-      originalPrice: "$18.99",
-      image: "/api/placeholder/400/300",
-      discount: 16,
-      isNew: false,
-      rating: 4.5,
-      deliveryTime: "20-30 min",
-      category: "Vegetarian",
-      spiceLevel: 0,
-      size: "Medium",
-      ingredients: ["Mozzarella", "Parmesan", "Gorgonzola", "Ricotta"]
-    },
-    {
-      id: 7,
-      name: "Hawaiian Tropical",
-      description: "Ham, pineapple, and mozzarella cheese with sweet and savory flavors",
-      price: "$13.99",
-      originalPrice: null,
-      image: "/api/placeholder/400/300",
-      discount: 0,
-      isNew: false,
-      rating: 4.4,
-      deliveryTime: "25-35 min",
-      category: "Classic",
-      spiceLevel: 0,
-      size: "Medium",
-      ingredients: ["Ham", "Pineapple", "Mozzarella", "Tomato Sauce"]
-    },
-    {
-      id: 8,
-      name: "Supreme Deluxe",
-      description: "All our best toppings including pepperoni, sausage, veggies, and extra cheese",
-      price: "$22.99",
-      originalPrice: "$26.99",
-      image: "/api/placeholder/400/300",
-      discount: 15,
-      isNew: true,
-      rating: 4.9,
-      deliveryTime: "35-45 min",
-      category: "Meat Lovers",
-      spiceLevel: 1,
-      size: "Family",
-      ingredients: ["Pepperoni", "Sausage", "Veggies", "Extra Cheese"]
-    }
-  ];
-
-  const categories = ["All", "Vegetarian", "Meat Lovers", "Spicy", "Specialty", "Classic"];
+function ProductCard({ product, index }) {
+  const { name, description, price, originalPrice, image, discount, isNew, rating, deliveryTime } = product;
+  const [isLiked, setIsLiked] = useState(false);
 
   return (
-    <section className="bg-gradient-to-br from-orange-50 to-red-50 py-16 lg:py-24" id="pizzas">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Our Delicious Pizzas
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-            Handcrafted with the finest ingredients, delivered hot and fresh to your door
-          </p>
+    <motion.div
+      className="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ y: -5 }}
+    
+    >
+      <div className="relative overflow-hidden">
+        <motion.img
+          src={image}
+          alt={name}
+          className="w-full h-64 sm:h-72 object-cover transition-transform duration-500 group-hover:scale-110"
+          initial={{ opacity: 0, scale: 1.1 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        />
 
-          {/* Category Filters */}
-          <motion.div 
-            className="flex flex-wrap justify-center gap-3 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+        {/* الأزرار عند الهوفر */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex justify-center items-center gap-3">
+          {/* زر السلة */}
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 transition-colors duration-200"
           >
-            {categories.map((category, index) => (
-              <motion.button
-                key={category}
-                className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
-                  category === "All" 
-                    ? "bg-[#e69d70] text-white shadow-lg"
-                    : "bg-white text-gray-700 hover:bg-[#e69d70] hover:text-white border border-gray-200"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                {category}
-              </motion.button>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Pizza Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {pizzas.map((pizza, index) => (
-            <motion.div
-              key={pizza.id}
-              className="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-orange-100"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: "easeOut",
-              }}
-              whileHover={{ y: -5 }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5 text-gray-800"
             >
-              {/* Image Container */}
-              <div className="relative overflow-hidden">
-                <motion.img
-                  src={pizza.image}
-                  alt={pizza.name}
-                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 2.25h2.25l2.1 12.6a2.25 2.25 0 002.25 1.875h9a2.25 2.25 0 002.25-1.875L21.75 6.75H6.75"
+              />
+            </svg>
+          </motion.button>
 
-                {/* Hover Actions */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex justify-center items-center gap-3">
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 transition-colors duration-200"
-                  >
-                    <FaShoppingCart className="w-4 h-4 text-gray-800" />
-                  </motion.button>
+          {/* زر الإعجاب */}
+          <motion.button
+            onClick={() => setIsLiked(!isLiked)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 transition-colors duration-200"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill={isLiked ? "#ef4444" : "none"}
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke={isLiked ? "#ef4444" : "currentColor"}
+              className="w-5 h-5 text-gray-800"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 8.25c0-2.071-1.679-3.75-3.75-3.75-1.09 0-2.063.47-2.75 1.219a4.002 4.002 0 00-7.5 0A3.744 3.744 0 004.5 4.5C2.43 4.5.75 6.179.75 8.25c0 6.716 11.25 11.25 11.25 11.25s11.25-4.534 11.25-11.25z"
+              />
+            </svg>
+          </motion.button>
 
-                  <motion.button
-                    onClick={() => toggleLike(pizza.id)}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 transition-colors duration-200"
-                  >
-                    <FaHeart 
-                      className={`w-4 h-4 ${likedItems[pizza.id] ? 'text-red-500 fill-current' : 'text-gray-800'}`} 
-                    />
-                  </motion.button>
-
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 transition-colors duration-200"
-                  >
-                    <FaEye className="w-4 h-4 text-gray-800" />
-                  </motion.button>
-                </div>
-
-                {/* Badges */}
-                <div className="absolute top-3 left-3 flex flex-col gap-2">
-                  {pizza.discount > 0 && (
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0.4 }}
-                      className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
-                    >
-                      -{pizza.discount}%
-                    </motion.div>
-                  )}
-                  {pizza.isNew && (
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0.5 }}
-                      className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
-                    >
-                      NEW
-                    </motion.div>
-                  )}
-                </div>
-
-                {/* Category Badge */}
-                <div className="absolute top-3 right-3">
-                  <span className="bg-[#e69d70] text-white px-2 py-1 rounded-full text-xs font-medium">
-                    {pizza.category}
-                  </span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-4">
-                {/* Rating and Delivery Time */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-1">
-                    <FaStar className="w-4 h-4 text-yellow-400 fill-current" />
-                    <span className="text-sm font-medium text-gray-700">{pizza.rating}</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-gray-500">
-                    <FaClock className="w-3 h-3" />
-                    <span className="text-sm">{pizza.deliveryTime}</span>
-                  </div>
-                </div>
-
-                {/* Pizza Name and Description */}
-                <h3 className="font-bold text-gray-900 text-lg mb-2 line-clamp-1">
-                  {pizza.name}
-                </h3>
-                <p className="text-gray-600 text-sm mb-3 line-clamp-2 leading-relaxed">
-                  {pizza.description}
-                </p>
-
-                {/* Size and Spice Level */}
-                <div className="flex items-center justify-between mb-4 text-xs text-gray-500">
-                  <span>Size: {pizza.size}</span>
-                  <span>
-                    {Array.from({ length: 3 }, (_, i) => (
-                      <span key={i} className={i < pizza.spiceLevel ? "text-red-500" : "text-gray-300"}>
-                        🌶️
-                      </span>
-                    ))}
-                  </span>
-                </div>
-                
-                {/* Price and CTA */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl font-bold text-gray-900">{pizza.price}</span>
-                    {pizza.originalPrice && (
-                      <span className="text-sm text-gray-500 line-through">
-                        {pizza.originalPrice}
-                      </span>
-                    )}
-                  </div>
-                  
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-[#e69d70] hover:bg-[#d18c65] text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200 text-sm flex items-center gap-2"
-                  >
-                    Order Now
-                    <FaArrowRight className="w-3 h-3" />
-                  </motion.button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          {/* زر المعاينة السريعة */}
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 transition-colors duration-200"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5 text-gray-800"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 12l8.954-8.955a.75.75 0 011.06 0L21.25 12m-19 0v8.25a.75.75 0 00.75.75h16.5a.75.75 0 00.75-.75V12"
+              />
+            </svg>
+          </motion.button>
         </div>
 
-        {/* CTA Section */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <div className="bg-gradient-to-r from-[#e69d70] to-[#d18c65] rounded-2xl p-8 text-white max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">
-              Hungry for More?
-            </h3>
-            <p className="text-orange-100 mb-6 max-w-2xl mx-auto">
-              Download our app for exclusive deals, faster ordering, and personalized recommendations!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                className="bg-white text-[#e69d70] px-8 py-3 rounded-full hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Download App
-              </motion.button>
-              <motion.button
-                className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-[#e69d70] transition-all duration-300 font-semibold"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View Full Menu
-              </motion.button>
-            </div>
-          </div>
-        </motion.div>
+        {/* بادجات الخصم والجديد */}
+        <div className="absolute top-4 left-4 flex flex-col gap-2">
+          {discount > 0 && (
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+              className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
+            >
+              -{discount}%
+            </motion.div>
+          )}
+          {isNew && (
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
+              className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg"
+            >
+              NEW
+            </motion.div>
+          )}
+        </div>
       </div>
-    </section>
+
+      {/* المحتوى السفلي */}
+      <motion.div
+        className="p-6"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        {/* التقييم ووقت التوصيل */}
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-1">
+            <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+            <span className="text-sm font-medium text-gray-700">{rating}</span>
+          </div>
+          <div className="flex items-center gap-1 text-gray-500">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span className="text-sm">{deliveryTime}</span>
+          </div>
+        </div>
+
+        <h3 className="font-bold text-gray-900 text-xl mb-2 line-clamp-1">{name}</h3>
+        <p className="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">{description}</p>
+        
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-bold text-gray-900">{price}</span>
+            {originalPrice && (
+              <span className="text-sm text-gray-500 line-through">
+                {originalPrice}
+              </span>
+            )}
+          </div>
+          
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-[#e89f72] hover:bg-[#d18c65] text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200 text-sm"
+          >
+            Order Now
+          </motion.button>
+        </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
-export default PizzaProducts;
+export default ProductCard;

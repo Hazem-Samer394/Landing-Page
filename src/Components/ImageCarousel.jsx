@@ -12,13 +12,13 @@ function ImageCarousel() {
       title: "Package Tracking",
       description: "Real-time tracking interface",
       content: (
-        <div className="bg-gradient-to-b from-blue-50 to-indigo-100 p-6 h-full">
+        <div className="bg-gradient-to-b from-blue-50 to-indigo-100 p-4 h-full">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-              <FaTruck className="text-white" />
+              <FaTruck className="text-white text-base" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 text-lg">Logic4Go</h3>
+              <h3 className="font-bold text-gray-900 text-base">Logic4Go</h3>
               <p className="text-sm text-gray-600">Smart Delivery</p>
             </div>
           </div>
@@ -32,7 +32,7 @@ function ImageCarousel() {
               <FaMapMarkerAlt className="text-blue-600" />
               <div>
                 <p className="text-sm font-medium text-gray-900">Package #LG123456</p>
-                <p className="text-xs text-gray-600">Expected delivery: 2:30 PM</p>
+                <p className="text-xs text-gray-600">Expected: 2:30 PM</p>
               </div>
             </div>
           </div>
@@ -59,13 +59,13 @@ function ImageCarousel() {
       title: "Delivery History",
       description: "Past deliveries overview",
       content: (
-        <div className="bg-gradient-to-b from-green-50 to-emerald-100 p-6 h-full">
+        <div className="bg-gradient-to-b from-green-50 to-emerald-100 p-4 h-full">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center">
-              <FaClock className="text-white" />
+              <FaClock className="text-white text-base" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 text-lg">Logic4Go</h3>
+              <h3 className="font-bold text-gray-900 text-base">Logic4Go</h3>
               <p className="text-sm text-gray-600">Delivery History</p>
             </div>
           </div>
@@ -73,26 +73,26 @@ function ImageCarousel() {
           <div className="space-y-3">
             <div className="bg-white rounded-xl p-3 shadow-md">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm font-medium text-gray-900">Package #LG789012</span>
+                <span className="text-sm font-medium text-gray-900">#LG789012</span>
                 <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Delivered</span>
               </div>
-              <p className="text-xs text-gray-600">Delivered on Dec 15, 2024 at 3:45 PM</p>
+              <p className="text-xs text-gray-600">Dec 15, 2024 • 3:45 PM</p>
             </div>
             
             <div className="bg-white rounded-xl p-3 shadow-md">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm font-medium text-gray-900">Package #LG345678</span>
+                <span className="text-sm font-medium text-gray-900">#LG345678</span>
                 <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Delivered</span>
               </div>
-              <p className="text-xs text-gray-600">Delivered on Dec 14, 2024 at 11:20 AM</p>
+              <p className="text-xs text-gray-600">Dec 14, 2024 • 11:20 AM</p>
             </div>
             
             <div className="bg-white rounded-xl p-3 shadow-md">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm font-medium text-gray-900">Package #LG901234</span>
+                <span className="text-sm font-medium text-gray-900">#LG901234</span>
                 <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">In Transit</span>
               </div>
-              <p className="text-xs text-gray-600">Expected delivery: Dec 16, 2024</p>
+              <p className="text-xs text-gray-600">Expected: Dec 16, 2024</p>
             </div>
           </div>
         </div>
@@ -103,13 +103,13 @@ function ImageCarousel() {
       title: "Service Selection",
       description: "Choose delivery options",
       content: (
-        <div className="bg-gradient-to-b from-purple-50 to-violet-100 p-6 h-full">
+        <div className="bg-gradient-to-b from-purple-50 to-violet-100 p-4 h-full">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center">
-              <FaMapMarkerAlt className="text-white" />
+              <FaMapMarkerAlt className="text-white text-base" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 text-lg">Logic4Go</h3>
+              <h3 className="font-bold text-gray-900 text-base">Logic4Go</h3>
               <p className="text-sm text-gray-600">Select Service</p>
             </div>
           </div>
@@ -117,7 +117,7 @@ function ImageCarousel() {
           <div className="space-y-3">
             <div className="bg-white rounded-xl p-4 shadow-md border-2 border-blue-200">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold text-gray-900">Express Delivery</span>
+                <span className="text-sm font-semibold text-gray-900">Express Delivery</span>
                 <span className="text-sm font-bold text-blue-600">$9.99</span>
               </div>
               <p className="text-xs text-gray-600 mb-2">Same-day delivery</p>
@@ -128,7 +128,7 @@ function ImageCarousel() {
             
             <div className="bg-white rounded-xl p-4 shadow-md">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold text-gray-900">Standard Delivery</span>
+                <span className="text-sm font-semibold text-gray-900">Standard Delivery</span>
                 <span className="text-sm font-bold text-green-600">$5.99</span>
               </div>
               <p className="text-xs text-gray-600 mb-2">2-3 business days</p>
@@ -139,7 +139,7 @@ function ImageCarousel() {
             
             <div className="bg-white rounded-xl p-4 shadow-md">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold text-gray-900">Economy Delivery</span>
+                <span className="text-sm font-semibold text-gray-900">Economy Delivery</span>
                 <span className="text-sm font-bold text-gray-600">$3.99</span>
               </div>
               <p className="text-xs text-gray-600 mb-2">5-7 business days</p>
@@ -157,7 +157,7 @@ function ImageCarousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % appScreenshots.length);
-    }, 4000); // Change every 4 seconds
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [appScreenshots.length]);
@@ -171,23 +171,24 @@ function ImageCarousel() {
   };
 
   return (
-    <div className="relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px] mx-auto">
-      {/* Phone Mockup */}
-      <div className="relative bg-gray-900 rounded-[2.5rem] p-2 shadow-2xl">
-        <div className="bg-white rounded-[2rem] overflow-hidden">
-          {/* Status Bar */}
-          <div className="bg-blue-600 h-8 flex items-center justify-between px-6 text-white text-xs">
+    <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px] mx-auto">
+      {/* iPhone 17 Mockup - Realistic proportions */}
+      <div className="relative bg-gray-900 rounded-[3rem] p-3 shadow-2xl">
+        {/* Dynamic Island */}
+        <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-full z-10"></div>
+        
+        <div className="bg-white rounded-[2.5rem] overflow-hidden border-[6px] border-gray-800">
+          {/* Status Bar - iPhone style */}
+          <div className="bg-transparent h-12 flex items-center justify-between px-6 text-black text-sm font-medium">
             <span>9:41</span>
             <div className="flex items-center gap-1">
-              <div className="w-4 h-2 bg-white/30 rounded-sm"></div>
-              <div className="w-4 h-2 bg-white/30 rounded-sm"></div>
-              <div className="w-4 h-2 bg-white/30 rounded-sm"></div>
+              <div className="w-4 h-4 bg-black rounded-full"></div>
+              <div className="w-4 h-2 bg-black rounded-sm"></div>
             </div>
-            <span>100%</span>
           </div>
           
-          {/* App Content with Carousel */}
-          <div className="h-[500px] relative overflow-hidden">
+          {/* App Content - iPhone 17 aspect ratio (19.5:9) */}
+          <div className="h-[640px] relative overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentImage}
@@ -201,26 +202,31 @@ function ImageCarousel() {
               </motion.div>
             </AnimatePresence>
           </div>
+          
+          {/* Home Indicator - iPhone style */}
+          <div className="bg-transparent h-4 flex items-center justify-center">
+            <div className="w-32 h-1 bg-gray-400 rounded-full"></div>
+          </div>
         </div>
       </div>
 
       {/* Navigation Arrows */}
       <button
         onClick={prevImage}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-colors duration-200"
+        className="absolute -left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-colors duration-200 border border-gray-200"
       >
         <FaChevronLeft className="w-4 h-4 text-gray-600" />
       </button>
       
       <button
         onClick={nextImage}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-colors duration-200"
+        className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-colors duration-200 border border-gray-200"
       >
         <FaChevronRight className="w-4 h-4 text-gray-600" />
       </button>
 
       {/* Dots Indicator */}
-      <div className="flex justify-center mt-4 space-x-2">
+      <div className="flex justify-center mt-6 space-x-2">
         {appScreenshots.map((_, index) => (
           <button
             key={index}
