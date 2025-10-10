@@ -7,23 +7,30 @@ import ImageCarousel from "./ImageCarousel";
 function Hero() {
   const [hovered, setHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // تغيير من 1024 إلى 768
+    const checkScreenSize = () => {
+      const mobile = window.innerWidth < 768;
+      const smallScreen = window.innerWidth < 650;
+      
+      setIsMobile(mobile);
+      setIsSmallScreen(smallScreen);
     };
 
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
 
-    return () => window.removeEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   return (
     <section className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-6 sm:py-8 lg:py-16 flex flex-col lg:flex-row items-center gap-4 sm:gap-6 lg:gap-12">
-      {/* Left Content */}
+      {/* Left Content - يأخذ العرض كامل في الشاشات الصغيرة */}
       <motion.div
-        className="bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 lg:p-8 rounded-xl lg:rounded-2xl shadow-lg flex flex-col justify-between w-full lg:w-[48%]"
+        className={`bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 lg:p-8 rounded-xl lg:rounded-2xl shadow-lg flex flex-col justify-between ${
+          isSmallScreen ? 'w-full' : 'w-full lg:w-[48%]'
+        }`}
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -44,7 +51,7 @@ function Hero() {
           </motion.div>
 
           <motion.h1
-            className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight"
+            className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight text-center lg:text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -54,7 +61,7 @@ function Hero() {
           </motion.h1>
 
           <motion.p
-            className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed"
+            className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed text-center lg:text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -65,7 +72,7 @@ function Hero() {
 
           {/* Key Stats */}
           <motion.div
-            className="flex flex-wrap gap-3 sm:gap-4 pt-3"
+            className="flex flex-wrap gap-3 sm:gap-4 pt-3 justify-center lg:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -102,59 +109,61 @@ function Hero() {
         </motion.button>
       </motion.div>
 
-      {/* Right Content - App Mockup Section */}
-      <div className="relative flex flex-col justify-center items-center w-full lg:w-[52%] mt-4 lg:mt-0">
-        <motion.div
-          className="relative w-full max-w-[280px] sm:max-w-[350px] lg:max-w-none mx-auto"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <ImageCarousel />
-        </motion.div>
+      {/* Right Content - App Mockup Section - يختفي في الشاشات الصغيرة */}
+      {!isSmallScreen && (
+        <div className="relative flex flex-col justify-center items-center w-full lg:w-[52%] mt-4 lg:mt-0">
+          <motion.div
+            className="relative w-full max-w-[280px] sm:max-w-[350px] lg:max-w-none mx-auto"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <ImageCarousel />
+          </motion.div>
 
-        {/* Floating Stats Card */}
-        <motion.div
-          className="
-            bg-white/90 backdrop-blur-md rounded-lg lg:rounded-xl p-3 sm:p-4 shadow-lg border border-gray-200
-            lg:absolute lg:bottom-4 lg:right-4 lg:w-[240px]
-            w-full max-w-[260px] sm:max-w-[300px] mx-auto mt-4
-            hover:shadow-xl transition-all duration-300
-          "
-          initial={{ opacity: 0, y: 30, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-          onHoverStart={() => !isMobile && setHovered(true)}
-          onHoverEnd={() => !isMobile && setHovered(false)}
-          whileHover={!isMobile ? { scale: 1.03, y: -2 } : {}}
-          whileTap={isMobile ? { scale: 0.95 } : {}}
-        >
-          <div className="space-y-2 sm:space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                <FaClock className="text-green-600 text-sm" />
+          {/* Floating Stats Card */}
+          <motion.div
+            className="
+              bg-white/90 backdrop-blur-md rounded-lg lg:rounded-xl p-3 sm:p-4 shadow-lg border border-gray-200
+              lg:absolute lg:bottom-4 lg:right-4 lg:w-[240px]
+              w-full max-w-[260px] sm:max-w-[300px] mx-auto mt-4
+              hover:shadow-xl transition-all duration-300
+            "
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            onHoverStart={() => !isMobile && setHovered(true)}
+            onHoverEnd={() => !isMobile && setHovered(false)}
+            whileHover={!isMobile ? { scale: 1.03, y: -2 } : {}}
+            whileTap={isMobile ? { scale: 0.95 } : {}}
+          >
+            <div className="space-y-2 sm:space-y-3">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                  <FaClock className="text-green-600 text-sm" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 text-base">
+                    Delivery Stats
+                  </h3>
+                  <p className="text-xs text-gray-600">Real-time performance</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-gray-900 text-base">
-                  Delivery Stats
-                </h3>
-                <p className="text-xs text-gray-600">Real-time performance</p>
+
+              <div className="grid grid-cols-2 gap-3 pt-1">
+                <div className="text-center">
+                  <p className="text-lg sm:text-xl font-bold text-blue-600">98%</p>
+                  <p className="text-xs text-gray-500">On-time Rate</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-lg sm:text-xl font-bold text-green-600">4.9★</p>
+                  <p className="text-xs text-gray-500">User Rating</p>
+                </div>
               </div>
             </div>
-
-            <div className="grid grid-cols-2 gap-3 pt-1">
-              <div className="text-center">
-                <p className="text-lg sm:text-xl font-bold text-blue-600">98%</p>
-                <p className="text-xs text-gray-500">On-time Rate</p>
-              </div>
-              <div className="text-center">
-                <p className="text-lg sm:text-xl font-bold text-green-600">4.9★</p>
-                <p className="text-xs text-gray-500">User Rating</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }

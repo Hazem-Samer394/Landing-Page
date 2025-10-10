@@ -172,13 +172,13 @@ function ImageCarousel() {
 
   return (
     <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px] mx-auto">
-      {/* iPhone 17 Mockup - Realistic proportions */}
+      {/* iPhone 17 Mockup */}
       <div className="relative bg-gray-900 rounded-[3rem] p-3 shadow-2xl">
         {/* Dynamic Island */}
         <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-full z-10"></div>
         
         <div className="bg-white rounded-[2.5rem] overflow-hidden border-[6px] border-gray-800">
-          {/* Status Bar - iPhone style */}
+          {/* Status Bar */}
           <div className="bg-transparent h-12 flex items-center justify-between px-6 text-black text-sm font-medium">
             <span>9:41</span>
             <div className="flex items-center gap-1">
@@ -187,7 +187,7 @@ function ImageCarousel() {
             </div>
           </div>
           
-          {/* App Content - iPhone 17 aspect ratio (19.5:9) */}
+          {/* App Content - Simple animation without direction */}
           <div className="h-[640px] relative overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
@@ -203,7 +203,7 @@ function ImageCarousel() {
             </AnimatePresence>
           </div>
           
-          {/* Home Indicator - iPhone style */}
+          {/* Home Indicator */}
           <div className="bg-transparent h-4 flex items-center justify-center">
             <div className="w-32 h-1 bg-gray-400 rounded-full"></div>
           </div>
