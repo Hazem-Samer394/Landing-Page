@@ -3,7 +3,7 @@ import Home from "./Pages/Home";
 
 function App() {
   return (
-    <div className="bg-[#fcf8f2] h-[100vh] top-24 mt-10 ">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <Home />
     </div>
   );
